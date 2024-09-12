@@ -48,6 +48,13 @@
             font-size: 0.9em;
             color: #555;
         }
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -113,7 +120,7 @@
 <p>This project is licensed under the MIT License.</p>
 
 <footer>
-    <p>Created by pouya &bull; <a href="https://github.com/with-pouyax">GitHub</a></p>
+    <p>Created by Pouya &bull; <a href="https://github.com/yourusername">GitHub</a></p>
 </footer>
 
 </body>
