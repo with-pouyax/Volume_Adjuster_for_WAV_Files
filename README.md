@@ -1,127 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Volume Adjuster for WAV Files</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-        h1 {
-            color: #4CAF50;
-        }
-        code {
-            background-color: #f4f4f4;
-            border: 1px solid #ddd;
-            padding: 2px 4px;
-            border-radius: 4px;
-        }
-        pre {
-            background-color: #f4f4f4;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        ul {
-            margin-left: 20px;
-        }
-        .example {
-            background-color: #e8f5e9;
-            padding: 10px;
-            border-left: 4px solid #4CAF50;
-            margin-top: 10px;
-        }
-        .command {
-            background-color: #f9f9f9;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        footer {
-            margin-top: 40px;
-            font-size: 0.9em;
-            color: #555;
-        }
-        a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
+🎵 WAV File Volume Adjuster
+A simple C program to adjust the volume of a .wav audio file by a specified factor.
 
-<h1>Volume Adjuster for WAV Files</h1>
+📋 Overview
+This tool allows you to modify the volume of a WAV file. The program reads the audio data from the input WAV file, scales it by a user-defined factor, and outputs a new WAV file with the adjusted volume. The original WAV file's metadata (header) is preserved, ensuring the output remains a valid WAV file.
 
-<p>This C program adjusts the volume of a given WAV file by a specified factor.</p>
+🚀 Getting Started
+Prerequisites
+To use this program, you need to have the following:
 
-<h2>Overview</h2>
+A C compiler like gcc
+A .wav file with a standard 44-byte header
+Basic knowledge of command-line usage
+Compilation
+You can compile the source code with the following command:
 
-<p>The program reads a WAV file's audio data, scales it by a user-provided factor, and writes the modified audio data to a new output WAV file. It preserves the original WAV file’s header information, ensuring that the output file remains a valid WAV file.</p>
+bash
+Copy code
+gcc -o volume volume.c
+This will create an executable called volume that you can use to run the program.
 
-<h2>Usage</h2>
+Usage
+Once compiled, the program is executed with three arguments:
 
-<p>To run the program, use the following syntax:</p>
+bash
+Copy code
+./volume input.wav output.wav factor
+input.wav: Path to the input WAV file
+output.wav: Path to the output WAV file where the adjusted audio will be saved
+factor: A floating-point number specifying how much to scale the volume (e.g., 0.5 to reduce by half, 2.0 to double the volume)
+Example:
+bash
+Copy code
+./volume song.wav song_louder.wav 1.5
+This command will increase the volume of song.wav by 1.5 times and save the result in song_louder.wav.
 
-<pre><code>./volume input.wav output.wav factor</code></pre>
-
-<ul>
-    <li><strong>input.wav</strong>: The path to the input WAV file.</li>
-    <li><strong>output.wav</strong>: The path to the output WAV file where the modified audio will be saved.</li>
-    <li><strong>factor</strong>: The volume adjustment factor (e.g., <code>0.5</code> to reduce the volume by half, <code>2.0</code> to double the volume).</li>
-</ul>
-
-<div class="example">
-    <h3>Example:</h3>
-    <pre><code>./volume original.wav adjusted.wav 1.5</code></pre>
-    <p>This command will increase the volume of <code>original.wav</code> by 1.5 times and save the result to <code>adjusted.wav</code>.</p>
-</div>
-
-<h2>Compilation</h2>
-
-<p>You can compile the program using <code>gcc</code>:</p>
-
-<pre><code>gcc -o volume volume.c</code></pre>
-
-<h2>Error Handling</h2>
-
-<p>The program handles errors such as:</p>
-<ul>
-    <li>Incorrect number of arguments: It expects exactly 3 arguments (input file, output file, and factor).</li>
-    <li>If the input or output files cannot be opened, it will display an error message.</li>
-</ul>
-
-<h2>How It Works</h2>
-
-<ol>
-    <li>The program reads the 44-byte header of the WAV file (standard for WAV files).</li>
-    <li>It copies the header directly to the output file.</li>
-    <li>It reads the audio samples (stored as 16-bit signed integers) from the input file, scales them by the factor, and writes the scaled samples to the output file.</li>
-</ol>
-
-<h2>Limitations</h2>
-
-<p>Note that this program only works with:</p>
-<ul>
-    <li>16-bit WAV files with a standard 44-byte header.</li>
-    <li>Extreme values for the volume factor may cause audio clipping or distortion.</li>
-</ul>
-
-<h2>License</h2>
-
-<p>This project is licensed under the MIT License.</p>
-
-<footer>
-    <p>Created by Pouya &bull; <a href="https://github.com/yourusername">GitHub</a></p>
-</footer>
-
-</body>
-</html>
+Input Constraints
+The program expects a .wav file with a 44-byte header (common for standard WAV files).
+The audio data should be in 16-bit signed integers.
+⚙️ How It Works
+Read the WAV header: The first 44 bytes of the input file are the header, which contains metadata such as the file format and sample rate.
+Adjust the volume: The audio data (stored as 16-bit samples) is read from the input file. Each sample is multiplied by the specified factor.
+Write the output file: The adjusted samples are written to the output file, along with the original header.
+🛠️ Error Handling
+If the correct number of arguments (3) is not provided, the program will display a usage message.
+If the input or output file cannot be opened, an error message will be shown.
+🌟 Features
+Volume scaling: Amplify or reduce the audio by any floating-point factor.
+Non-destructive: The original WAV file remains unchanged.
+Easy to use: Straightforward command-line interface with error handling.
+❗ Limitations
+Designed to work only with 16-bit PCM WAV files.
+Modifying the volume by extreme factors (e.g., very high or very low) might cause audio clipping or distortion.
+📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
