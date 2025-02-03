@@ -1,6 +1,8 @@
 
 # 🎵 WAV File Volume Adjuster
 
+![Wav](https://i.sstatic.net/ZU3tO.png)
+
 A simple C program to adjust the volume of a `.wav` audio file by a specified factor.
 
 ## 📋 Overview
